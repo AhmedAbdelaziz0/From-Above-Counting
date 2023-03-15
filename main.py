@@ -14,8 +14,8 @@ def gate_func(ex_loop, gate_name, url, maxDisappeared=1, maxDistance=125,
                 minNeighbor, minStartEndPos, min_person_area,
                 frame_res, low_end_thres, dilate_iter, erode_iter,max_wait_cycles,
                 wait_seconds, wait_diplay_frame, maxage)
-    start_time = time.time()
-
+    start_day = datetime.now().strftime("%d")
+          
     while ex_loop.buf[0]:
         gate.update()
         res = gate.read_result()
@@ -29,9 +29,8 @@ def gate_func(ex_loop, gate_name, url, maxDisappeared=1, maxDistance=125,
         gate.display_video(disp_differ=False,
                             disp_thres=False,
                             disp_main_frame=True)
-        if datetime.now().strftime("%H:%M:%S") == '00:00:00':
-            if time.time() - start_time > 2:
-                start_time = time.time()
+        if datetime.now().strftime("%d") != start_day:
+            start_time = datetime.now()strftime("%d")
             gate.ct.UPS = 0
             gate.ct.DOWNS = 0
     gate.close()
